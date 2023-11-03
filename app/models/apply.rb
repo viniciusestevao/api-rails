@@ -1,7 +1,7 @@
 class Apply < ApplicationRecord
   belongs_to :candidate
   belongs_to :recruiter
-  has_many :apply_tests
+  has_many :apply_tests, dependent: :restrict_with_error
 
   def create_apply_test(test_ids)
     tests = Test.where(id: test_ids)

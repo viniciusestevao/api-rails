@@ -1,3 +1,3 @@
 class Test < ApplicationRecord
-  has_many :apply_tests
+  has_many :test_items
 end

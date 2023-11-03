@@ -42,7 +42,7 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-  config.hosts << "4ed3-2804-14c-3b01-8f0d-ecc1-1a8d-84c9-2e46.ngrok-free.app"
+  config.hosts << "aece-2804-14c-3b01-8f0d-cd5e-c34e-8ec6-38e8.ngrok-free.app"
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true

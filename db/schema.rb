@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_01_021316) do
+ActiveRecord::Schema.define(version: 2023_11_02_012904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,15 +37,11 @@ ActiveRecord::Schema.define(version: 2023_11_01_021316) do
   end
 
   create_table "candidate_answers", force: :cascade do |t|
-    t.bigint "apply_id"
-    t.bigint "test_id"
-    t.bigint "question_id"
+    t.bigint "test_item_id"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["apply_id"], name: "index_candidate_answers_on_apply_id"
-    t.index ["question_id"], name: "index_candidate_answers_on_question_id"
-    t.index ["test_id"], name: "index_candidate_answers_on_test_id"
+    t.index ["test_item_id"], name: "index_candidate_answers_on_test_item_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -71,34 +67,34 @@ ActiveRecord::Schema.define(version: 2023_11_01_021316) do
 
   create_table "questions", force: :cascade do |t|
     t.string "tag"
-    t.bigint "test_id"
     t.string "description"
-    t.string "option_a"
-    t.string "option_b"
-    t.string "option_c"
-    t.string "option_d"
-    t.string "option_e"
+    t.string "question_type", null: false
+    t.jsonb "body", default: [], null: false
     t.boolean "can_copy"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
-  create_table "right_answers", force: :cascade do |t|
+  create_table "test_items", force: :cascade do |t|
+    t.bigint "apply_test_id"
+    t.bigint "question_id"
     t.string "description"
+    t.string "question_type", null: false
+    t.jsonb "body", default: [], null: false
+    t.string "answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["apply_test_id"], name: "index_test_items_on_apply_test_id"
+    t.index ["question_id"], name: "index_test_items_on_question_id"
   end
 
   create_table "tests", force: :cascade do |t|
     t.string "title"
-    t.bigint "apply_id"
     t.string "description"
     t.string "instruction"
     t.boolean "can_copy"
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
-    t.index ["apply_id"], name: "index_tests_on_apply_id"
   end
 
   create_table "user_tokens", force: :cascade do |t|
@@ -123,10 +119,5 @@ ActiveRecord::Schema.define(version: 2023_11_01_021316) do
 
   add_foreign_key "applies", "people", column: "candidate_id"
   add_foreign_key "applies", "people", column: "recruiter_id"
-  add_foreign_key "candidate_answers", "applies"
-  add_foreign_key "candidate_answers", "questions"
-  add_foreign_key "candidate_answers", "tests"
   add_foreign_key "people", "users"
-  add_foreign_key "questions", "tests"
-  add_foreign_key "tests", "applies"
 end
