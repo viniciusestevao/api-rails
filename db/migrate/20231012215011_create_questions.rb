@@ -4,6 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[6.0]
       t.string :tag
       t.string :description
       t.string :question_type, null: false
+      t.string :answer
       t.jsonb :body, null: false, default: []
 
       # t.string :option_a

@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     get 'tests', on: :member
   end
 
+  resources :tests do
+    get 'questions', on: :member
+  end
+
   post '/login', to: 'login#create'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

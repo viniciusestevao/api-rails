@@ -1,7 +1,7 @@
 class ApplyTest < ApplicationRecord
-  belongs_to :apply
+  belongs_to :apply, optional: true
   belongs_to :test
-  has_many :test_items, dependent: :restrict_with_error
+  has_many :test_items # , dependent: :restrict_with_error
 
   before_destroy :allow_destroy
 
@@ -13,5 +13,4 @@ class ApplyTest < ApplicationRecord
     errors.add(:base, 'Questão já respondida.')
     throw(:abort)
   end
-
 end

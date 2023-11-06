@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2023_11_02_012904) do
     t.string "tag"
     t.string "description"
     t.string "question_type", null: false
+    t.string "answer"
     t.jsonb "body", default: [], null: false
     t.boolean "can_copy"
     t.datetime "created_at", precision: 6, null: false
@@ -82,8 +83,8 @@ ActiveRecord::Schema.define(version: 2023_11_02_012904) do
     t.string "question_type", null: false
     t.jsonb "body", default: [], null: false
     t.string "answer"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["apply_test_id"], name: "index_test_items_on_apply_test_id"
     t.index ["question_id"], name: "index_test_items_on_question_id"
   end
