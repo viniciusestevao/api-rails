@@ -83,8 +83,9 @@ ActiveRecord::Schema.define(version: 2023_11_02_012904) do
     t.string "question_type", null: false
     t.jsonb "body", default: [], null: false
     t.string "answer"
-    t.datetime "created_at", precision: 6
-    t.datetime "updated_at", precision: 6
+    t.string "candidate_answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["apply_test_id"], name: "index_test_items_on_apply_test_id"
     t.index ["question_id"], name: "index_test_items_on_question_id"
   end

@@ -7,6 +7,7 @@ class CreateTestItems < ActiveRecord::Migration[6.0]
       t.string :question_type, null: false
       t.jsonb :body, null: false, default: []
       t.string :answer
+      t.string :candidate_answer
 
       t.timestamps
     end

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users
   resources :candidates
   resources :recruiters
+  resources :apply_tests
+  resources :test_items
   
   resources :applies do
     get 'tests', on: :member
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resources :tests do
     get 'questions', on: :member
   end
+
 
   post '/login', to: 'login#create'
 
